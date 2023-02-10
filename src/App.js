@@ -18,6 +18,7 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [modalImage, setModalImage] = useState(null);
   const [, setIsLoading] = useState(false);
+  const [, totalHits] = useState(1);
 
   const handleImages = imagesQuery => {
     if (!imagesQuery) {
@@ -40,6 +41,7 @@ const App = () => {
 
   const loadMore = () => {
     setPageQuery(prev => prev + 1);
+    setIsLoading(true);
   };
 
   //if imagesQuery change
@@ -98,7 +100,8 @@ const App = () => {
           style={{ textAlign: 'center' }}
         />
       )} */}
-      {images.length > 0 && <Button loadMoreBtn={loadMore} />}
+      
+      {images.length > totalHits && <Button loadMoreBtn={loadMore} />}
       {modalImage && (
         <Modal closeModal={closeModal}>
           <img src={modalImage.largeImageURL} alt={modalImage.tags} />
