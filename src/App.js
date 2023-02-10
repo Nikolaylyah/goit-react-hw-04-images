@@ -18,7 +18,7 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [modalImage, setModalImage] = useState(null);
   const [, setIsLoading] = useState(false);
-  const [, totalHits] = useState(1);
+  const [totalHits, setTotalHits] = useState(1);
 
   const handleImages = imagesQuery => {
     if (!imagesQuery) {
@@ -59,6 +59,7 @@ const App = () => {
           toast.error('No images with this query!');
         }
         setImages(images.hits);
+        setTotalHits(images.totalHits);
       })
       .catch(error => toast.error(error.code))
       .finally(() => {
@@ -101,7 +102,7 @@ const App = () => {
         />
       )} */}
       
-      {images.length > totalHits && <Button loadMoreBtn={loadMore} />}
+      {images.length < totalHits && <Button loadMoreBtn={loadMore} />}
       {modalImage && (
         <Modal closeModal={closeModal}>
           <img src={modalImage.largeImageURL} alt={modalImage.tags} />
