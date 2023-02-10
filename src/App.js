@@ -18,7 +18,7 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [modalImage, setModalImage] = useState(null);
   const [, setIsLoading] = useState(false);
-  const [totalHits, setTotalHits] = useState(1);
+  const [totalHits, setTotalHits] = useState(0);
 
   const handleImages = imagesQuery => {
     if (!imagesQuery) {
